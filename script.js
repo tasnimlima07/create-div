@@ -1,57 +1,38 @@
-
- // Function to add div
+let divCounter = 0;
 
 function createDiv() {
-    var newDiv = document.createElement("div");
-    
-    newDiv.classList.add("created-div");
-    newDiv.id = "myCreatedDiv";
+  divCounter++;
+  const newDiv = document.createElement("div");
+  const uniqueId = `myCreatedDiv${divCounter}`;
 
-    document.body.appendChild(newDiv);
+  newDiv.classList.add("created-div");
+  newDiv.id = uniqueId;
+
+  document.body.appendChild(newDiv);
+}
+
+function changeColor() {
+  var createdDiv = document.querySelector(".created-div:last-child");
+  if (createdDiv) {
+    createdDiv.style.backgroundColor = "red";
+  } else {
+    alert("No div to change color!");
   }
+}
 
-  
-  // Function to change color
-
-  function changeColor() {
-    var createdDiv = document.getElementById("myCreatedDiv");
-    if (createdDiv) {
-      createdDiv.style.backgroundColor = "red";
-    } else {
-      alert("No div to change color!");
-    }
+function removeDiv() {
+  var createdDiv = document.querySelector(".created-div:last-child");
+  if (createdDiv) {
+    document.body.removeChild(createdDiv);
+  } else {
+    alert("No div to remove!");
   }
+}
 
+var createDivButton = document.getElementById("createDivButton");
+var removeDivButton = document.getElementById("removeDivButton");
+var colorChangeButton = document.getElementById("colorChangeButton");
 
-
-  // Function to remove the previously created div
-  function removeDiv() {
-    var createdDiv = document.getElementById("myCreatedDiv");
-    if (createdDiv) {
-        document.body.removeChild(createdDiv)
-      } else {
-        alert("No div to remove!");
-      }
-    	
-  }
-
-
-  function changeColor() {
-    var createdDiv = document.getElementById("myCreatedDiv");
-    if (createdDiv) {
-      createdDiv.style.backgroundColor = "red";
-    } else {
-      alert("No div to change color!");
-    }
-  }
-  
-
- 
-  var createDivButton = document.getElementById("createDivButton");
-  var removeDivButton = document.getElementById("removeDivButton");
-  var colorChangeButton = document.getElementById("colorChangeButton");
-
-
-  createDivButton.addEventListener("click", createDiv);
-  removeDivButton.addEventListener("click", removeDiv);
-  colorChangeButton.addEventListener("click", changeColor);
+createDivButton.addEventListener("click", createDiv);
+removeDivButton.addEventListener("click", removeDiv);
+colorChangeButton.addEventListener("click", changeColor);
