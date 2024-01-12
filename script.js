@@ -1,6 +1,8 @@
 let divCounter = 0;
+let containerDiv = document.createElement("div");
+containerDiv.classList.add("container-div");
 
-function createDiv() {
+const createDiv = () => {
   divCounter++;
   const newDiv = document.createElement("div");
   const uniqueId = `myCreatedDiv${divCounter}`;
@@ -8,31 +10,33 @@ function createDiv() {
   newDiv.classList.add("created-div");
   newDiv.id = uniqueId;
 
-  document.body.appendChild(newDiv);
-}
+  containerDiv.appendChild(newDiv);
+};
 
-function changeColor() {
-  var createdDiv = document.querySelector(".created-div:last-child");
+const changeColor = () => {
+  const createdDiv = document.querySelector(".created-div:last-child");
   if (createdDiv) {
     createdDiv.style.backgroundColor = "red";
   } else {
     alert("No div to change color!");
   }
-}
+};
 
-function removeDiv() {
-  var createdDiv = document.querySelector(".created-div:last-child");
+const removeDiv = () => {
+  const createdDiv = document.querySelector(".created-div:last-child");
   if (createdDiv) {
-    document.body.removeChild(createdDiv);
+    containerDiv.removeChild(createdDiv);
   } else {
     alert("No div to remove!");
   }
-}
+};
 
-var createDivButton = document.getElementById("createDivButton");
-var removeDivButton = document.getElementById("removeDivButton");
-var colorChangeButton = document.getElementById("colorChangeButton");
+const createDivButton = document.getElementById("createDivButton");
+const removeDivButton = document.getElementById("removeDivButton");
+const colorChangeButton = document.getElementById("colorChangeButton");
 
-createDivButton.addEventListener("click", createDiv);
-removeDivButton.addEventListener("click", removeDiv);
-colorChangeButton.addEventListener("click", changeColor);
+document.body.appendChild(containerDiv);
+
+createDivButton.onclick = createDiv;
+removeDivButton.onclick = removeDiv;
+colorChangeButton.onclick = changeColor;
